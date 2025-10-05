@@ -1,0 +1,38 @@
+[
+  {
+    "id": "f56c0bb4-6a8d-45e6-a16e-158c362d5976",
+    "titulo": "a",
+    "autor": "f",
+    "paginas": "43",
+    "genero": "sd",
+    "status": "lido",
+    "paginaAtual": 0,
+    "avaliacao": 4,
+    "dataInicio": null,
+    "dataFim": null
+  },
+  {
+    "id": "d8778b26-dde9-4cfb-b58c-079da0b082ae",
+    "titulo": "g",
+    "autor": "b",
+    "paginas": "67",
+    "genero": "56",
+    "status": "quero_ler",
+    "paginaAtual": 0,
+    "avaliacao": null,
+    "dataInicio": null,
+    "dataFim": null
+  },
+  {
+    "id": "18cdefe0-3fba-47a4-8f23-ea20a5e32e84",
+    "titulo": "p",
+    "autor": "tfy",
+    "paginas": "76",
+    "genero": "h",
+    "status": "lendo",
+    "paginaAtual": 0,
+    "avaliacao": null,
+    "dataInicio": null,
+    "dataFim": null
+  }
+]
