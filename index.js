@@ -24,18 +24,19 @@ const cadastrarLivro = async () => {
     const autor = await input({ message: "Digite o autor:" });
     const paginas = await input({ message: "Digite a quantidade de páginas:" });
     const genero = await input({ message: "Digite o gênero:" });
-    
-        //verifica se o valor existe. every = verifica se todos os itens do array atendem as condições 
+
+    //verifica se o valor existe. every = verifica se todos os itens do array atendem as condições 
     if (![titulo, autor, paginas, genero].every(campo => campo && campo.trim())) {
         console.log('Todos os campos devem ser preenchdos.');
         return;
     }
-    
-    //Coverte o valor de páginas que tava em texto pra núm
-    const pagge = Number(paginas);
 
-    //se pagge n for válida ou <0
-    if (!pagge || pagge<= 0) {
+    //Coverte o valor de páginas que tava em string pra Inteiro
+    const pagge = parseInt(paginas);
+
+    //se pagge n for válida ou <0643
+
+    if (!pagge || pagge <= 0) {
         console.log("Número de páginas inválido. Insira um número (maior que 0).");
         return;
     }
@@ -43,65 +44,137 @@ const cadastrarLivro = async () => {
 
     console.log(`Livro cadastrado com sucesso! ${titulo}`)
 
-    livros.push({ 
-            id: randomUUID(),
-            titulo: titulo, 
-            autor: autor, 
-            paginas: paginas, 
-            genero: genero, 
-            status: 'quero_ler',   // status inicial
-            paginaAtual: 0,
-            avaliacao: null,
-            dataInicio: null,
-            dataFim: null
-        });
+    livros.push({
+        id: randomUUID(),
+        titulo: titulo,
+        autor: autor,
+        paginas: paginas,
+        genero: genero,
+        status: `quero_ler`,  // status inicial
+        paginaAtual: 0,
+        avaliacao: null,
+        dataInicio: null,
+        dataFim: null
+    });
 }
 
-async function atualizarStatus() {
-  if (livros.length === 0) {
-    console.log("\nNenhum livro cadastrado.\n");
-    return;
-  }
+const listaDesejos = async () => { //Validações = 2. 1.Possui livros? 2.Algum é querendo_ler?
+    if (livros.length === 0) {
+        console.log("\nNenhum livro cadastrado.\n");
+        return;
+    }
 
-  const livroSelecionado = await select({
-    message: "Selecione o livro para atualizar:",
-    choices: livros.map(l => ({
-      name: `${l.titulo} (${l.status})`,
-      value: l.id
-    }))
-  });
+    // Filtra apenas os livros com status 'quero_ler'
+    const desejos = livros.filter(livro => livro.status === "quero_ler");
 
-  const novoStatus = await select({
-    message: "Qual o novo status?",
-    choices: [
-      { name: "📖 Quero ler", value: "quero_ler" },
-      { name: "📚 Lendo", value: "lendo" },
-      { name: "✅ Lido", value: "lido" }
-    ]
-  });
+    if (desejos.length === 0) {
+        console.log("✨ Nenhum livro na sua lista de desejos!");
+        return;
+    }
 
-  const livro = livros.find(l => l.id === livroSelecionado);
-  livro.status = novoStatus;
+    console.log('\n --Lista de Desejos--\n')
 
-  // Se marcar como lido, pode pedir avaliação
-  if (novoStatus === "lido") {
-    const avaliacaoStr = await input({
-      message: "De 1 a 5 estrelas, quanto você avalia esse livro?"
+    desejos.forEach((l, index) => {
+        console.log(`${index + 1}. ${l.titulo} — ${l.autor} - ${l.paginas} (${l.genero})`);
     });
 
-    const avaliacao = parseInt(avaliacaoStr);
-    if (avaliacao >= 1 && avaliacao <= 5) {
-      livro.avaliacao = avaliacao;
-    } else {
-      console.log("⚠️ Avaliação inválida, valor ignorado.");
-    }
-  }
+    console.log("\nTotal de livros na lista de desejos:", desejos.length);
+};
 
-  console.log("✅ Status atualizado com sucesso!");
-  await salvarLivros(); // salva no JSON
+
+const atualizarStatus = async () => {
+//async function atualizarStatus() {
+    if (livros.length === 0) {
+        console.log("\nNenhum livro cadastrado.\n");
+        return;
+    }
+
+    const livroSelecionado = await select({
+        message: "Selecione o livro para atualizar:",
+        choices: livros.map(l => ({            //l = nome da variavel dentro de map
+            name: `${l.titulo} (${l.status})`,
+            value: l.id
+        }))
+    });
+
+    const novoStatus = await select({
+        message: "Qual o novo status?",
+        choices: [
+            { name: " Quero ler", value: "quero_ler" },
+            { name: " Lendo", value: "lendo" },
+            { name: " Lido", value: "lido" }
+        ]
+    });
+
+    //Ptocura no array de livros - seleciona - novo status
+    const livro = livros.find(l => l.id === livroSelecionado);
+    livro.status = novoStatus;
+
+    // Se marcar como lido, pode pedir avaliação
+    if (novoStatus === "lido") {
+        const avaliacaoEstrelas = await input({
+            message: "De 1 a 5 estrelas, quanto você avalia esse livro?"
+        });
+
+
+        //const avaliacao = Number(avaliacaoEstrelas);
+        const avaliacao = parseInt(avaliacaoEstrelas);
+        if (avaliacao >= 1 && avaliacao <= 5) {
+            livro.avaliacao = avaliacao;
+            console.log(`⭐ Você avaliou "${livro.titulo}" com ${avaliacao} estrela(s)!`);
+        } else {
+            console.log("⚠️ Avaliação inválida. Deve ser entre 1 e 5.");
+        }
+    }
+
+
+    console.log("✅ Status atualizado com sucesso!");
+    await salvarLivros(); // salva no JSON
 }
 
+const deletarLivros = async () => { //Tá dando erro 
+    
+    if(livros.length == 0) {
+        console.log = ("Não existem livros para deletar!");
+        return;
+    }
 
+      // Prepara as opções para o checkbox
+  const escolhas = livros.map(l => ({
+    name: `${l.titulo} — ${l.autor}`, // o que aparece para o usuário
+    value: l.id                        // valor usado para identificar o livro
+  }));
+
+    const itensADeletar = await checkbox({
+        message: "Selecione um iivro para deletar",
+        choices: escolhas,
+        instructions: false,
+    });
+
+    if (itensADeletar.length == 0) {
+       console.log = ("Nenhum livro para deletar!");
+        return;
+    }
+
+     livros = livros.filter(l => !itensADeletar.includes(l.id));
+
+     console.log= ("Livro(s) deletado(s) com sucesso!");
+
+    /* Isso é necessário?
+    
+    // Função para carregar livros do JSON na inicialização
+const carregarLivros = async () => {
+  try {
+    const data = await fs.readFile('livros.json', 'utf-8');
+    livros = JSON.parse(data);
+  } catch {
+    livros = []; // Se não existir o arquivo ainda, inicia vazio
+  }
+};
+*/
+
+
+}
 const start = async () => {
     await carregarLivros();
 
@@ -120,6 +193,14 @@ const start = async () => {
                     value: "atualizarStatus"
                 },
                 {
+                    name: "Lista de Desejos",
+                    value: "desejos"
+                },
+                {
+                    name: "Deletar Itens",
+                    value: "deletar"
+                },
+                {
                     name: "Sair",
                     value: "sair"
                 }
@@ -133,8 +214,14 @@ const start = async () => {
             case "atualizarStatus":
                 await atualizarStatus();
                 break;
+            case "desejos":
+                await listaDesejos();
+                break;
+            case "deletar":
+                await deletarLivros();
+                break;
             case "sair":
-                console.log('Até a próxima!');
+                console.log("Até a próxima!");
                 return;
         }
     }
