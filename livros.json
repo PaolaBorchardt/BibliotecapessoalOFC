@@ -1,14 +1,74 @@
 [
   {
-    "id": "227d9c6d-269c-45a6-926f-b88f041010ce",
-    "titulo": "a",
-    "autor": "h",
-    "paginas": "3",
-    "genero": "as",
+    "id": "3daacb9f-472c-4a0d-9afc-afc765354437",
+    "titulo": "O Hobbit",
+    "autor": "J.R.R. Tolkien",
+    "paginas": "310",
+    "genero": "Fantasia",
     "status": "lido",
+    "paginaAtual": 310,
+    "avaliacao": 3,
+    "dataInicio": "06/10/2025, 21:24:01",
+    "dataFim": "06/10/2025, 21:29:02"
+  },
+  {
+    "id": "86beb153-def9-40d9-8757-4d2814a64525",
+    "titulo": "As Crônicas de Nárnia",
+    "autor": "C.S. Lewis",
+    "paginas": "767",
+    "genero": "Fantasia7",
+    "status": "quero_ler",
     "paginaAtual": 0,
+    "avaliacao": null,
+    "dataInicio": "06/10/2025, 21:24:30",
+    "dataFim": "06/10/2025, 21:24:30"
+  },
+  {
+    "id": "d1ee3ba7-26a4-450e-b515-a108f5531971",
+    "titulo": "Trono de Vidro",
+    "autor": "Sarah J. Maas",
+    "paginas": "416",
+    "genero": "Fantasia",
+    "status": "lido",
+    "paginaAtual": 416,
+    "avaliacao": 2,
+    "dataInicio": "06/10/2025, 21:25:26",
+    "dataFim": "06/10/2025, 21:29:17"
+  },
+  {
+    "id": "ad9b6f66-df44-41ae-8ff0-736ba4c5fdda",
+    "titulo": "Anna Karenina",
+    "autor": "Liev Tolstói",
+    "paginas": "864",
+    "genero": "Romance",
+    "status": "lendo",
+    "paginaAtual": 864,
+    "avaliacao": 4,
+    "dataInicio": "06/10/2025, 21:26:18",
+    "dataFim": "06/10/2025, 21:29:34"
+  },
+  {
+    "id": "c317847b-c44f-44b7-a984-ec72291f713d",
+    "titulo": "Orgulho e Preconceito",
+    "autor": "Jane Austen",
+    "paginas": "432",
+    "genero": "Romance",
+    "status": "lido",
+    "paginaAtual": 432,
     "avaliacao": 5,
-    "dataInicio": null,
-    "dataFim": null
+    "dataInicio": "06/10/2025, 21:26:43",
+    "dataFim": "06/10/2025, 21:29:56"
+  },
+  {
+    "id": "5203df95-cb4b-4985-89db-3b18b0a67c29",
+    "titulo": "Dom Casmurro",
+    "autor": "Machado de Assis",
+    "paginas": "256",
+    "genero": "Romance",
+    "status": "lido",
+    "paginaAtual": 256,
+    "avaliacao": 5,
+    "dataInicio": "06/10/2025, 21:27:13",
+    "dataFim": "06/10/2025, 21:29:49"
   }
 ]
