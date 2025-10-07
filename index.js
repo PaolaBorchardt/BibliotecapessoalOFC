@@ -1,11 +1,7 @@
 const { select, input, checkbox } = require('@inquirer/prompts');
 const fs = require('fs').promises;
-//const dayjs = require("day.js")
-//const path = require('path');
 const { randomUUID } = require('crypto'); //módulo nativo q gera id
 
-
-// tem q ver pra qq serveconst DATA_FILE = path.resolve(__dirname, 'biblioteca.json'); // arquivo onde persistimos
 let livros = []
 
 const carregarLivros = async () => {
@@ -42,7 +38,7 @@ const cadastrarLivro = async () => {
         console.log("Número de páginas inválido. Insira um número (maior que 0).");
         return;
     }
-    console.log(`Livro cadastrado com sucesso! ${titulo}`);
+    console.log(`O livro ${titulo} foi cadastrado com sucesso!`);
 
     livros.push({
         id: randomUUID(),
@@ -68,11 +64,11 @@ const listaDesejos = async () => { //Validações = 2. 1.Possui livros? 2.Algum 
     const desejos = livros.filter(livro => livro.status === "quero_ler");
 
     if (desejos.length === 0) {
-        console.log("✨ Nenhum livro na sua lista de desejos!");
+        console.log(" Nenhum livro na sua lista de desejos!");
         return;
     }
 
-    console.log('\n --Lista de Desejos--\n')
+    console.log(`\n✨ Lista de Desejos ✨\n`);
 
     desejos.forEach((l, index) => {
         console.log(`${index + 1}. ${l.titulo} — ${l.autor} — ${l.paginas} — (${l.genero})`);
@@ -87,6 +83,8 @@ const atualizarStatus = async () => {
         console.log("\nNenhum livro cadastrado.\n");
         return;
     }
+
+    console.log(`\n✨Altere o status do seu Livro ✨\n`);
 
     const livroSelecionado = await select({
         message: "Selecione o livro para atualizar:",
@@ -128,6 +126,8 @@ const atualizarProgresso = async () => {
         console.log("📖 Nenhum livro em leitura no momento.");
         return;
     }
+
+    console.log(`\n✨ Atualize seu Progresso de Páginas ✨\n`);
 
     // Escolhe o livro em leitura
     const livroSelecionado = await select({
@@ -181,29 +181,35 @@ const atualizarProgresso = async () => {
         console.log(`📖 Progresso atualizado: página ${livro.paginaAtual} de ${totalPaginas}`);
     }
     if (livro.status === "lido") {
-        const avaliacaoEstrelas = await input({
-            message: "De 1 a 5 estrelas, quanto você avalia esse livro?"
-        });
+        let avaliacao;
 
+        while (true) {
+            const avaliacaoEstrelas = await input({
+                message: "De 1 a 5 estrelas, quanto você avalia esse livro?"
+            });
 
-        //const avaliacao = Number(avaliacaoEstrelas);
-        const avaliacao = parseInt(avaliacaoEstrelas);
-        if (avaliacao >= 1 && avaliacao <= 5) {
-            livro.avaliacao = avaliacao;
-            console.log(`⭐ Você avaliou "${livro.titulo}" com ${avaliacao} estrela(s)!`);
-        } else {
-            console.log("⚠️ Avaliação inválida. Deve ser entre 1 e 5.");
+            avaliacao = parseInt(avaliacaoEstrelas);
+
+            if (avaliacao >= 1 && avaliacao <= 5) {
+                livro.avaliacao = avaliacao;
+                console.log(`⭐ Você avaliou "${livro.titulo}" com ${avaliacao} estrela(s)!`);
+                break; // sai do loop se for válido
+            } else {
+                console.log("⚠️ Avaliação inválida. Digite um número entre 1 e 5.");
+            }
         }
 
         await salvarLivros(); // grava a atualização no arquivo JSON
     }
-};
+}
 const estatisticas = async () => {
     // 1️⃣ Verifica se existem livros cadastrados
     if (!Array.isArray(livros) || livros.length === 0) {
         console.log("⚠️ Não existem livros cadastrados para gerar estatísticas!");
         return;
     }
+
+    console.log(`\n✨ Estátisticas Literárias ✨\n`);
 
     // 2️⃣ Filtra apenas livros concluídos
     const lidos = livros.filter(l => l.status === "lido" && l.dataFim);
@@ -253,9 +259,34 @@ const estatisticas = async () => {
     console.log("Total de livros lidos:", totalLidos);
     console.log("Média de páginas por livro:", mediaPaginasArredondada);
     console.log("Livros por mês:", livrosPorMes);
-    console.log("Gênero favorito:", generoFavorito ? `${generoFavorito.genero} (média: ${generoFavorito.mediaAvaliacao.toFixed(1)}, count: ${generoFavorito.count})` : "Nenhum");
+    console.log("Gênero favorito:", generoFavorito ? `${generoFavorito.genero} (média: ${generoFavorito.mediaAvaliacao.toFixed(1)}, quantidade: ${generoFavorito.count})` : "Nenhum");
 
     return { livrosPorMes, generoFavorito, totalLidos, mediaPaginas: mediaPaginasArredondada };
+};
+
+const recomendacaoBook = async () => {
+    if (livros.length === 0) {
+        console.log("❌ Nenhum livro cadastrado!");
+        return;
+    }
+
+    // Filtra livros com status 'lido' e avaliação 4 ou 5
+    const recomendados = livros.filter(l =>
+        l.status === "lido" && (l.avaliacao === 4 || l.avaliacao === 5)
+    );
+
+    if (recomendados.length === 0) {
+        console.log("📭 Você ainda não avaliou nenhum livro com 4 ou 5 estrelas.");
+        return;
+    }
+
+    console.log(`\n✨ Suas recomendações Literárias ✨\n`);
+
+    recomendados.forEach((l, index) => {
+        console.log(`${index + 1}. "${l.titulo}" — ${l.autor} ⭐ ${l.avaliacao}/5`);
+    });
+
+    console.log(`\nTotal de recomendações: ${recomendados.length}\n`);
 };
 
 const deletarLivros = async () => {
@@ -331,6 +362,10 @@ const start = async () => {
                     value: "estatisticas"
                 },
                 {
+                    name: "Recomendação de Livros",
+                    value: "recomendação"
+                },
+                {
                     name: "Deletar Itens",
                     value: "deletar"
                 },
@@ -351,6 +386,9 @@ const start = async () => {
             case "desejos":
                 await listaDesejos();
                 break;
+            case "recomendação":
+                await recomendacaoBook();
+                break;
             case "progresso":
                 await atualizarProgresso();
                 break;
@@ -361,7 +399,7 @@ const start = async () => {
                 await deletarLivros();
                 break;
             case "sair":
-                console.log(`Até a próxima!`);
+                console.log("Até a próxima!");
                 return;
         }
     }
