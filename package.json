@@ -1,15 +1,6 @@
 {
-  "name": "projeto-integrador",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Déric Martins",
-  "license": "ISC",
   "dependencies": {
-    "@inquirer/prompts": "^7.8.6"
+    "@inquirer/prompts": "^7.8.6",
+    "inquirer": "^12.9.6"
   }
 }

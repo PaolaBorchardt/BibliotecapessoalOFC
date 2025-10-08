@@ -7,9 +7,9 @@
     "genero": "Fantasia",
     "status": "lido",
     "paginaAtual": 310,
-    "avaliacao": 3,
+    "avaliacao": 5,
     "dataInicio": "06/10/2025, 21:24:01",
-    "dataFim": "06/10/2025, 21:29:02"
+    "dataFim": "08/10/2025, 18:45:39"
   },
   {
     "id": "86beb153-def9-40d9-8757-4d2814a64525",
@@ -45,7 +45,7 @@
     "paginaAtual": 864,
     "avaliacao": 5,
     "dataInicio": "06/10/2025, 21:26:18",
-    "dataFim": "07/10/2025, 20:13:04"
+    "dataFim": "08/10/2025, 18:46:07"
   },
   {
     "id": "c317847b-c44f-44b7-a984-ec72291f713d",
@@ -70,41 +70,5 @@
     "avaliacao": 5,
     "dataInicio": "06/10/2025, 21:27:13",
     "dataFim": "06/10/2025, 21:29:49"
-  },
-  {
-    "id": "fc9416fd-e4a0-4852-b9e3-1b6ef7e85493",
-    "titulo": "teste",
-    "autor": "testando",
-    "paginas": "12",
-    "genero": "Terror",
-    "status": "quero_ler",
-    "paginaAtual": 0,
-    "avaliacao": null,
-    "dataInicio": "07/10/2025, 20:10:53",
-    "dataFim": "07/10/2025, 20:10:53"
-  },
-  {
-    "id": "b2b6e905-80f2-40d6-a1bb-04ef95358de0",
-    "titulo": "a",
-    "autor": "b",
-    "paginas": "12",
-    "genero": "c",
-    "status": "lido",
-    "paginaAtual": 12,
-    "avaliacao": 5,
-    "dataInicio": "07/10/2025, 20:11:50",
-    "dataFim": "07/10/2025, 20:24:21"
-  },
-  {
-    "id": "730e7209-3814-467d-a92e-82d975db61d5",
-    "titulo": "ab",
-    "autor": "c",
-    "paginas": "21",
-    "genero": "d",
-    "status": "quero_ler",
-    "paginaAtual": 0,
-    "avaliacao": null,
-    "dataInicio": "07/10/2025, 20:12:08",
-    "dataFim": "07/10/2025, 20:12:08"
   }
 ]
