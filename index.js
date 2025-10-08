@@ -99,7 +99,7 @@ const listaDesejos = async () => {
 
 };
 
-// Função que MUDA o status do livro (quero ler → lendo, ou lendo → lido)
+// Função que MUDA o status do livro (quero ler → lendo, ou lido para lendo -> ler)
 const atualizarStatus = async () => {
     if (livros.length === 0) {
         console.log("\nNenhum livro cadastrado.\n");
@@ -161,7 +161,7 @@ const atualizarProgresso = async () => {
         }))
     });
 
-    // Encontra o livro completo usando o ID que foi selecionado
+    //Encontra o livro completo usando o ID que foi selecionado
     const livro = livros.find(l => l.id === livroSelecionado);
     if (!livro) {
         console.log("❌ Livro não encontrado.");
@@ -189,13 +189,7 @@ const atualizarProgresso = async () => {
         return; // Para a função se digitou um número maior que o total
     }
 
-    // Se o livro ainda não tem data de início registrada, registra agora
-    if (livro.status === "lendo" && !livro.dataInicio) {
-        livro.dataInicio = new Date().toLocaleString(); // Pega data e hora atuais
-        console.log(`📅 Leitura iniciada em ${livro.dataInicio}.`);
-    }
-
-    // Verifica se terminou de ler o livro (chegou na última página ou passou)
+    // Verifica se terminou de ler o livro 
     if (novaPagina >= totalPaginas) {
         livro.paginaAtual = totalPaginas;    // Define como a última página
         livro.status = "lido";                // Muda o status para "lido"
@@ -312,7 +306,8 @@ const estatisticas = async () => {
     console.log("Total de livros lidos:", totalLidos);
     console.log("Média de páginas por livro:", mediaPaginasArredondada);
     console.log("Livros por mês:", livrosPorMes);
-    console.log("Gênero favorito:", generoFavorito ? `${generoFavorito.genero} (média: ${generoFavorito.mediaAvaliacao.toFixed(1)}, quantidade: ${generoFavorito.count})` : "Nenhum");
+    console.log("Gênero favorito:", generoFavorito ? `${generoFavorito.genero} (média: ${generoFavorito.mediaAvaliacao.toFixed(1)}, 
+    quantidade: ${generoFavorito.count})` : "Nenhum");
 
     return { livrosPorMes, generoFavorito, totalLidos, mediaPaginas: mediaPaginasArredondada };
 
