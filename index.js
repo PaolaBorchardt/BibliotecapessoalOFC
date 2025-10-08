@@ -190,7 +190,7 @@ const atualizarProgresso = async () => {
     }
 
     // Verifica se terminou de ler o livro 
-    if (novaPagina >= totalPaginas) {
+    if (novaPagina == totalPaginas) {
         livro.paginaAtual = totalPaginas;    // Define como a última página
         livro.status = "lido";                // Muda o status para "lido"
         livro.dataFim = new Date().toLocaleString(); // Registra quando terminou

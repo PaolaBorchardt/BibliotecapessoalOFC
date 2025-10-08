@@ -17,7 +17,7 @@
     "autor": "C.S. Lewis",
     "paginas": "767",
     "genero": "Fantasia7",
-    "status": "quero_ler",
+    "status": "lendo",
     "paginaAtual": 0,
     "avaliacao": null,
     "dataInicio": "06/10/2025, 21:24:30",
@@ -29,11 +29,11 @@
     "autor": "Sarah J. Maas",
     "paginas": "416",
     "genero": "Fantasia",
-    "status": "lendo",
+    "status": "lido",
     "paginaAtual": 416,
-    "avaliacao": 2,
+    "avaliacao": 5,
     "dataInicio": "06/10/2025, 21:25:26",
-    "dataFim": "06/10/2025, 21:29:17"
+    "dataFim": "08/10/2025, 19:46:22"
   },
   {
     "id": "ad9b6f66-df44-41ae-8ff0-736ba4c5fdda",
@@ -67,8 +67,8 @@
     "genero": "Romance",
     "status": "lido",
     "paginaAtual": 256,
-    "avaliacao": 5,
+    "avaliacao": 2,
     "dataInicio": "06/10/2025, 21:27:13",
-    "dataFim": "06/10/2025, 21:29:49"
+    "dataFim": "08/10/2025, 19:47:15"
   }
 ]
