@@ -41,7 +41,7 @@ const cadastrarLivro = async () => {
     // every = verifica se todos os itens do array atendem a condição
     // trim() = remove espaços em branco no início e fim do texto
     if (![titulo, autor, paginas, genero].every(campo => campo && campo.trim())) {
-        console.log("Todos os campos devem ser preenchidos.");
+        console.log("❌ Todos os campos devem ser preenchidos.");
         return; // Para a função aqui se algum campo estiver vazio
     }
 
@@ -50,10 +50,10 @@ const cadastrarLivro = async () => {
 
     // Verifica se o número de páginas é válido (tem que ser maior que 0)
     if (!pagge || pagge <= 0) {
-        console.log("Número de páginas inválido. Insira um número (maior que 0).");
+        console.log("❌ Número de páginas inválido. Insira um número (maior que 0).");
         return; // Para a função se o número for inválido
     }
-    console.log(`O livro ${titulo} foi cadastrado com sucesso!`);
+    console.log(`✅ O livro ${titulo} foi cadastrado com sucesso!`);
 
     // ✅ ADICIONA um novo livro ao final do array 'livros'
     // push() = adiciona um item no final da lista
@@ -102,7 +102,7 @@ const listaDesejos = async () => {
 // Função que MUDA o status do livro (quero ler → lendo, ou lido para lendo -> ler)
 const atualizarStatus = async () => {
     if (livros.length === 0) {
-        console.log("\nNenhum livro cadastrado.\n");
+        console.log("\n❌ Nenhum livro cadastrado.\n");
         return;
     }
 
@@ -326,7 +326,7 @@ const recomendacaoBook = async () => {
     );
 
     if (recomendados.length === 0) {
-        console.log("📭 Você ainda não avaliou nenhum livro com 4 ou 5 estrelas.");
+        console.log("❌ Você ainda não avaliou nenhum livro com 4 ou 5 estrelas.");
         return;
     }
 
@@ -344,7 +344,7 @@ const recomendacaoBook = async () => {
 const deletarLivros = async () => {
 
     if (livros.length == 0) {
-        console.log("Não existem livros para deletar!");
+        console.log("❌ Não existem livros para deletar!");
         return;
     }
 
@@ -363,7 +363,7 @@ const deletarLivros = async () => {
 
     // Se não marcou nenhum livro, não faz nada
     if (itensADeletar.length == 0) {
-        console.log("Nenhum livro para deletar!");
+        console.log("❌ Nenhum livro para deletar!");
         return;
     }
     // ⚠️ Confirmação antes de excluir permanentemente
@@ -377,7 +377,7 @@ const deletarLivros = async () => {
 
     // ❌ Se o usuário escolher “Não”, cancela a ação
     if (!confirmar ) {
-        console.log("Operação cancelada. Nenhum livro foi deletado.");
+        console.log("❌ Operação cancelada. Nenhum livro foi deletado.");
         return;
     }
 
@@ -387,7 +387,7 @@ const deletarLivros = async () => {
 
     
     await salvarLivros(); // Salva as mudanças no arquivo JSON
-    console.log("Livro(s) deletado(s) com sucesso!");
+    console.log("✅ Livro(s) deletado(s) com sucesso!");
 
 }
 // Função PRINCIPAL que inicia o programa
@@ -403,35 +403,35 @@ const start = async () => {
             message: "Menu >",
             choices: [
                 {
-                    name: "Cadastrar Livro",       // O que aparece na tela
+                    name: "📚 Cadastrar Livro",       // O que aparece na tela
                     value: "cadastrar"             // Valor usado no switch
                 },
                 {
-                    name: "Atualizar STATUS do Livro",
+                    name: "🔄 Atualizar STATUS do Livro",
                     value: "atualizarStatus"
                 },
                 {
-                    name: "Lista de Desejos",
+                    name: "💭 Lista de Desejos",
                     value: "desejos"
                 },
                 {
-                    name: "Atualizar páginas",
+                    name: "📖 Atualizar páginas",
                     value: "progresso"
                 },
                 {
-                    name: "Análise de estátisticas",
+                    name: "📊 Análise de estátisticas",
                     value: "estatisticas"
                 },
                 {
-                    name: "Recomendação de Livros",
+                    name: "✨ Recomendação de Livros",
                     value: "recomendação"
                 },
                 {
-                    name: "Deletar Itens",
+                    name: "🗑️ Deletar Itens",
                     value: "deletar"
                 },
                 {
-                    name: "Sair",
+                    name: "🚪 Sair",
                     value: "sair"
                 }
             ]

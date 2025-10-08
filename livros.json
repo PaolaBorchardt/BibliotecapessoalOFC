@@ -5,7 +5,7 @@
     "autor": "J.R.R. Tolkien",
     "paginas": "310",
     "genero": "Fantasia",
-    "status": "quero_ler",
+    "status": "lendo",
     "paginaAtual": 310,
     "avaliacao": 5,
     "dataInicio": "06/10/2025, 21:24:01",
@@ -70,17 +70,5 @@
     "avaliacao": 2,
     "dataInicio": "06/10/2025, 21:27:13",
     "dataFim": "08/10/2025, 19:47:15"
-  },
-  {
-    "id": "43221f3e-63b7-4f89-b777-1ad79d29ab97",
-    "titulo": "a",
-    "autor": "b",
-    "paginas": "43",
-    "genero": "c",
-    "status": "quero_ler",
-    "paginaAtual": 0,
-    "avaliacao": null,
-    "dataInicio": "08/10/2025, 20:16:05",
-    "dataFim": null
   }
 ]
