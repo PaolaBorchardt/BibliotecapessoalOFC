@@ -182,7 +182,7 @@ const atualizarProgresso = async () => {
 
     // Converte o texto digitado para número
     let novaPagina = Number(novaPaginaInput);
-    
+
     // Verifica se a página informada não ultrapassa o total de páginas do livro
     if (novaPagina > totalPaginas) {
         console.log(`⚠️ Número de páginas lidas não pode ser maior que o total do livro (${totalPaginas}).`);
@@ -200,7 +200,7 @@ const atualizarProgresso = async () => {
         livro.paginaAtual = novaPagina;
         console.log(`📖 Progresso atualizado: página ${livro.paginaAtual} de ${totalPaginas}`);
     }
-    
+
     // Se o livro foi marcado como lido, pede uma avaliação
     if (livro.status === "lido") {
         let avaliacao;
@@ -288,7 +288,7 @@ const estatisticas = async () => {
             mediaAvaliacao: data.totalAvaliacao / data.count // Calcula a média
         }))
         .sort((a, b) => b.mediaAvaliacao - a.mediaAvaliacao || b.count - a.count)[0] || null;
-        // sort() = ordena do maior para o menor
+    // sort() = ordena do maior para o menor
 
     // 5️⃣ Conta o total de livros lidos
     const totalLidos = lidos.length;
@@ -366,11 +366,27 @@ const deletarLivros = async () => {
         console.log("Nenhum livro para deletar!");
         return;
     }
+    // ⚠️ Confirmação antes de excluir permanentemente
+    const confirmar = await select({
+        message: "⚠️ Deseja realmente excluir o(s) livro(s) permanentemente?",
+        choices: [
+            { name: "Sim, excluir definitivamente", value: true },
+            { name: "Não, cancelar exclusão", value: false }
+        ]
+    });
+
+    // ❌ Se o usuário escolher “Não”, cancela a ação
+    if (!confirmar ) {
+        console.log("Operação cancelada. Nenhum livro foi deletado.");
+        return;
+    }
 
     // filter com ! = fica só com os livros que NÃO estão na lista para deletar
     // includes() = verifica se o ID está na lista de itens para deletar
     livros = livros.filter(l => !itensADeletar.includes(l.id));
 
+    
+    await salvarLivros(); // Salva as mudanças no arquivo JSON
     console.log("Livro(s) deletado(s) com sucesso!");
 
 }
@@ -439,10 +455,10 @@ const start = async () => {
                 await estatisticas();
                 break;
             case "recomendação":
-                await recomendacaoBook(); 
+                await recomendacaoBook();
                 break;
-            case "deletar": 
-                await deletarLivros(); 
+            case "deletar":
+                await deletarLivros();
                 break;
             case "sair":
                 console.log("👋 Até a próxima!");
