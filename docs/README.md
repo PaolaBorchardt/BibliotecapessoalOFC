@@ -1,5 +1,10 @@
 # 📚 Biblioteca Pessoal
 
+## CANVA
+https://www.canva.com/design/DAG1KWc6VCU/pxtUo439O5BDlCNKdbNEKQ/edit?utm_content=DAG1KWc6VCU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+---
+
 ## 📝 Descrição  
 
 Aplicativo de terminal desenvolvido em **Node.js** para **gerenciar sua biblioteca pessoal**, acompanhar o progresso de leitura, avaliar livros e gerar estatísticas personalizadas.  
@@ -45,11 +50,7 @@ Permite cadastrar obras, registrar páginas lidas, atribuir avaliações e visua
 - **crypto.randomUUID()** – Geração de IDs únicos
 - **JSON** – Estrutura dos dados persistentes
 - **async/await** – Controle assíncrono de fluxos
-
-## 🖼️ Capturas de Tela
-
-(Insira aqui prints do terminal mostrando o menu e as estatísticas do app funcionando)
-
+  
 ---
 
 ## 👩‍💻 Autor
